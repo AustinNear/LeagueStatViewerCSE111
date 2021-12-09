@@ -1,0 +1,19 @@
+Steps to setup
+
+    1. Make sure you have python (> 3.6) installed
+
+    2. (Optional but recommended) Create and activate a virtual environment
+        - Run `python -m venv .venv`
+        - Run `source .venv/bin/activate` if you are on Linux/MacOS or `.venv\Scripts\activate` if you are 
+          on Windows
+
+
+    3. Install the python dependencies
+        - Run `pip install -r requirements.txt`     
+
+
+    4. Run the following command to start the app on localhost at port 7024
+        - `python run_app.py`
+
+
+    5. Visit `http://localhost:7024` in a browser to open the app
