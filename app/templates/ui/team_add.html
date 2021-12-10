@@ -1,0 +1,75 @@
+{% extends 'ui/base_layout.html' %}
+{% import 'partials/page-title.html' as pt %}
+{% set active_page = "team_add" %}
+
+{% block content %}
+{{ pt.page_title("Add Team", "Add a new team") }}
+{{ render_all_flashes() }}
+
+<div class="card">
+  <div class="card-body">
+    <form method="POST" autocomplete="off" action="">
+      {{ form.csrf_token }}
+
+      <div class="row form-group">
+        <label class="col-md-2 col-form-label">Team Tag</label>
+        <div class="col-md-10">
+          {{ form.teamtag(placeholder="Enter Tag", class="form-control form-control-sm") }}
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <label class="col-md-2 col-form-label">Year</label>
+        <div class="col-md-10">
+          {{ form.year(placeholder="Enter Year", class="form-control form-control-sm") }}
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <label class="col-md-2 col-form-label">Season</label>
+        <div class="col-md-10">
+          {{ form.season(class="form-control form-control-sm") }}
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <label class="col-md-2 col-form-label">Top</label>
+        <div class="col-md-10">
+          {{ form.player_top(placeholder="Enter Top Player", class="form-control form-control-sm") }}
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <label class="col-md-2 col-form-label">Jungle</label>
+        <div class="col-md-10">
+          {{ form.player_jungle(placeholder="Enter Jungle Player", class="form-control form-control-sm") }}
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <label class="col-md-2 col-form-label">Mid</label>
+        <div class="col-md-10">
+          {{ form.player_mid(placeholder="Enter Mid Player", class="form-control form-control-sm") }}
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <label class="col-md-2 col-form-label">ADC</label>
+        <div class="col-md-10">
+          {{ form.player_adc(placeholder="Enter ADC Player", class="form-control form-control-sm") }}
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <label class="col-md-2 col-form-label">Support</label>
+        <div class="col-md-10">
+          {{ form.player_support(placeholder="Enter Support Player", class="form-control form-control-sm") }}
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-danger">Submit</button>
+
+    </form>
+  </div>
+</div>
+{% endblock %}

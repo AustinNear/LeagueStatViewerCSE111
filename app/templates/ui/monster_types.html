@@ -1,0 +1,25 @@
+{% extends 'ui/base_layout.html' %}
+{% import 'partials/page-title.html' as pt %}
+{% set active_page = "mn_types" %}
+
+{% block content %}
+{{ pt.page_title("Monster Types", "List of all distinct monster types") }}
+{{ render_all_flashes() }}
+
+<div class="app-table-responsive mb-3">
+  <table class="app-table no-expand">
+    <thead>
+      <tr>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for mt in mn_types %}
+      <tr>
+        <td>{{ mt[0] }}</td>
+      </tr> 
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

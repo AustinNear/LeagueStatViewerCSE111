@@ -1,0 +1,79 @@
+{% extends 'ui/base_layout.html' %}
+{% import 'partials/page-title.html' as pt %}
+{% set active_page = "team_players" %}
+
+{% block content %}
+{{ pt.page_title("Team Players", "Matches played by a team where the given champion was picked for a specific role") }}
+{{ render_all_flashes() }}
+
+<div class="card">
+  <div class="card-body">
+    <form method="GET" action="">
+      <div class="row g-3 align-items-center mb-3">
+
+        <div class="col-auto">
+          <label class="col-form-label">Select Champion Type</label>
+        </div>
+        <div class="col-auto">
+          <select name="ctype" autocomplete="off" class="form-select form-select-sm app-form-ctrl">
+            {% for type in champ_types %}
+              <option value="{{ type }}" {% if filter_ctype == type %}selected{% endif %} >{{ type }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="col-auto">
+          <label class="col-form-label">Enter Team Tag</label>
+        </div>
+        <div class="col-auto">
+          <input name="teamtag" value="{{ filter_teamtag }}" class="form-control form-control-sm">
+        </div>
+
+        <div class="col-auto">
+          <label class="col-form-label">Enter Champion Name</label>
+        </div>
+        <div class="col-auto">
+          <input name="champ_name" value="{{ filter_champ_name }}" class="form-control form-control-sm">
+        </div>
+
+        <div class="col-auto">
+          <button type="submit" class="btn btn-success btn-shadow">Go</button>
+        </div>
+      </div>
+    </form>
+
+
+    <div class="app-table-responsive mb-3">
+      <table class="app-table">
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>Season</th>
+            <th>Type</th>
+            <th>League</th>
+            <th>Blue Team Tag</th>
+            <th>Blue {{ filter_ctype }} Champ</th>
+            <th>Red Team Tag</th>
+            <th>Red {{ filter_ctype }} Champ</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in rows %}
+          <tr>
+            <td>{{ r[0] }}</td>
+            <td>{{ r[1] }}</td>
+            <td>{{ r[2] }}</td>
+            <td>{{ r[3] }}</td>
+            <td>{{ r[4] }}</td>
+            <td>{{ r[5] }}</td>
+            <td>{{ r[6] }}</td>
+            <td>{{ r[7] }}</td>
+          </tr> 
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

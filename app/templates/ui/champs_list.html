@@ -1,0 +1,189 @@
+{% extends 'ui/base_layout.html' %}
+{% import 'partials/page-title.html' as pt %}
+{% set active_page = "champs_list" %}
+
+{% block content %}
+{{ pt.page_title("Champions List", "List of all the Champions") }}
+{{ render_all_flashes() }}
+
+<div class="card">
+  <div class="card-body">
+
+    <form method="GET" action="">
+      <div class="row g-3 align-items-center mb-3">
+
+        <div class="col-auto">
+          <label class="col-form-label">Filter By ID</label>
+        </div>
+        <div class="col-auto">
+          <input name="f_champ_id" value="{{ filter_champ_id }}" class="form-control form-control-sm">
+        </div>
+
+        <div class="col-auto">
+          <label class="col-form-label">Filter By Name</label>
+        </div>
+        <div class="col-auto">
+          <input name="f_name" value="{{ filter_name }}" class="form-control form-control-sm">
+        </div>
+
+        <div class="col-auto">
+          <label class="col-form-label">Filter By Class</label>
+        </div>
+        <div class="col-auto">
+          <input name="f_cclass" value="{{ filter_cclass }}" class="form-control form-control-sm">
+        </div>
+
+        <div class="col-auto">
+          <label class="col-form-label">Filter By Style</label>
+        </div>
+        <div class="col-auto">
+          <input name="f_style" value="{{ filter_style }}" class="form-control form-control-sm">
+        </div>
+
+        <div class="col-auto">
+          <label class="col-form-label">Filter By Difficulty</label>
+        </div>
+        <div class="col-auto">
+          <input name="f_difficulty" value="{{ filter_difficulty }}" class="form-control form-control-sm">
+        </div>
+
+        <div class="col-auto">
+          <label class="col-form-label">Filter By Damage Type</label>
+        </div>
+        <div class="col-auto">
+          <input name="f_dtype" value="{{ filter_dtype }}" class="form-control form-control-sm">
+        </div>
+
+        <div class="col-auto">
+          <label class="col-form-label">Filter By Damage</label>
+        </div>
+        <div class="col-auto">
+          <input name="f_damage" value="{{ filter_damage }}" class="form-control form-control-sm">
+        </div>
+
+        <div class="col-auto">
+          <label class="col-form-label">Filter By Sturdiness</label>
+        </div>
+        <div class="col-auto">
+          <input name="f_stdr" value="{{ filter_stdr }}" class="form-control form-control-sm">
+        </div>
+
+        <div class="col-auto">
+          <label class="col-form-label">Filter By Crowd Control</label>
+        </div>
+        <div class="col-auto">
+          <input name="f_cctrl" value="{{ filter_cctrl }}" class="form-control form-control-sm">
+        </div>
+
+        <div class="col-auto">
+          <label class="col-form-label">Filter By Mobility</label>
+        </div>
+        <div class="col-auto">
+          <input name="f_mobl" value="{{ filter_mobl }}" class="form-control form-control-sm">
+        </div>
+
+        <div class="col-auto">
+          <label class="col-form-label">Filter By Functionality</label>
+        </div>
+        <div class="col-auto">
+          <input name="f_func" value="{{ filter_func }}" class="form-control form-control-sm">
+        </div>
+
+
+        <div class="col-auto">
+          <button type="submit" class="btn btn-success btn-shadow">Filter</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="app-table-responsive mb-3">
+      <table class="app-table">
+        <thead>
+          <tr>
+            <th>Edit</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Class</th>
+            <th>Style</th>
+            <th>Difficulty</th>
+            <th>Damage Type</th>
+            <th>Damage</th>
+            <th>Sturdiness</th>
+            <th>Crowd Control</th>
+            <th>Mobility</th>
+            <th>Functionality</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in rows %}
+          <tr>
+            <td><a href="{{ url_for('core.champ_update', champ_id=r[0]) }}">Edit</a></td>
+            <td>{{ r[0] }}</td>
+            <td>{{ r[1] }}</td>
+            <td>{{ r[2] }}</td>
+            <td>{{ r[3] }}</td>
+            <td>{{ r[4] }}</td>
+            <td>{{ r[5] }}</td>
+            <td>{{ r[6] }}</td>
+            <td>{{ r[7] }}</td>
+            <td>{{ r[8] }}</td>
+            <td>{{ r[9] }}</td>
+            <td>{{ r[10] }}</td>
+          </tr> 
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <nav>
+      <ul class="pagination justify-content-end">
+        <li class="page-item {% if current_page == 1 %}disabled{% endif %}">
+          <a 
+            class="page-link"
+            href="{{ url_for('core.champs_list') ~ '?' ~ filter_query_str ~ '&page=1' }}"
+          >
+            First
+          </a>
+        </li>
+        <li class="page-item {% if current_page == 1 %}disabled{% endif %}">
+          <a 
+            class="page-link"
+            href="{{ url_for('core.champs_list') ~ '?' ~ filter_query_str ~ '&page=' ~ (current_page - 1) }}"
+          >
+            &laquo;
+          </a>
+        </li>
+
+        {% for i in range(render_page_start, render_page_end + 1) %}
+          <li class="page-item {% if i == current_page %}active{% endif %}">
+            <a 
+              class="page-link" 
+              href="{{ url_for('core.champs_list') ~ '?' ~ filter_query_str ~ '&page=' ~ i }}"
+            >
+              {{ i }}
+            </a>
+          </li>
+        {% endfor %}
+
+        <li class="page-item {% if current_page == total_pages %}disabled{% endif %}">
+          <a 
+            class="page-link"
+            href="{{ url_for('core.champs_list') + '?' ~ filter_query_str ~ '&page=' ~ (current_page + 1) }}"
+          >
+            &raquo;
+          </a>
+        </li>
+        <li class="page-item {% if current_page == total_pages %}disabled{% endif %}">
+          <a 
+            class="page-link"
+            href="{{ url_for('core.champs_list') + '?' ~ filter_query_str ~ '&page=' ~ total_pages }}"
+          >
+            Last
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% macro page_title(title, subtitle) -%}
+<div class="app-page-title">
+  <div class="page-title-wrapper">
+    <div class="page-title-heading">
+      <div class="page-title-icon">
+        <i class="bi bi-info-circle icon-32" style="color: cornflowerblue;"></i>
+      </div>
+      <div>
+        {{ title }}
+        {% if subtitle %}
+          <div class="page-title-subheading">
+            {{ subtitle }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{%- endmacro %}

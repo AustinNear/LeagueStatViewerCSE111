@@ -1,0 +1,56 @@
+{% extends 'ui/base_layout.html' %}
+{% import 'partials/page-title.html' as pt %}
+{% set active_page = "teams_list" %}
+
+{% block content %}
+{{ pt.page_title("Update Team \"" ~ teamtag ~ "\"", "Update/Delete the selected team") }}
+{{ render_all_flashes() }}
+
+<div class="card">
+  <div class="card-body">
+    <form method="POST" autocomplete="off" action="">
+      {{ form.csrf_token }}
+
+      <div class="row form-group">
+        <label class="col-md-2 col-form-label">Team Tag</label>
+        <div class="col-md-10">
+          {{ form.teamtag(placeholder="Enter Tag", class="form-control form-control-sm") }}
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <label class="col-md-2 col-form-label">Year</label>
+        <div class="col-md-10">
+          {{ form.year(placeholder="Enter Year", class="form-control form-control-sm") }}
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <label class="col-md-2 col-form-label">Season</label>
+        <div class="col-md-10">
+          {{ form.season(class="form-control form-control-sm") }}
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-success">Update</button>
+
+    </form>
+  </div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <h5 class="mb-3">Delete This Team</h5>
+    <form method="POST" autocomplete="off" action="{{ url_for('core.team_delete') }}">
+      {{ delete_form.csrf_token }}
+
+      {{ delete_form.teamtag(value=teamtag) }}
+
+      <div class="alert alert-danger">
+        <strong>This action is dangerous</strong>
+      </div>
+
+      <button type="submit" class="btn btn-danger">DELETE TEAM</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

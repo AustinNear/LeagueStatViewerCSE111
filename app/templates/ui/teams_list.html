@@ -1,0 +1,119 @@
+{% extends 'ui/base_layout.html' %}
+{% import 'partials/page-title.html' as pt %}
+{% set active_page = "teams_list" %}
+
+{% block content %}
+{{ pt.page_title("Teams List", "List of all the teams") }}
+{{ render_all_flashes() }}
+
+<div class="card">
+  <div class="card-body">
+
+    <form method="GET" action="">
+      <div class="row g-3 align-items-center mb-3">
+        <div class="col-auto">
+          <label for="inputPassword6" class="col-form-label">Filter By Year</label>
+        </div>
+        <div class="col-auto">
+          <select name="year" autocomplete="off" class="form-select form-select-sm app-form-ctrl">
+            <option value="0" {% if filter_selected_year == 0 %}selected{% endif %}>Select Year</option>
+            {% for year in range(min_year, max_year + 1) %}
+              <option value="{{ year }}" {% if filter_selected_year == year %}selected{% endif %}>
+                {{ year }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="col-auto">
+          <button type="submit" class="btn btn-success btn-shadow">Filter</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="app-table-responsive mb-3">
+      <table class="app-table">
+        <thead>
+          <tr class='small'>
+            <th>Edit</th>
+            <th>Tag</th>
+            <th>Year</th>
+            <th>Season</th>
+            <th>Top</th>
+            <th>Jungle</th>
+            <th>Mid</th>
+            <th>ADC</th>
+            <th>Support</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for team in teams %}
+          <tr>
+            <td><a href="{{ url_for('core.team_update', name=team[0]) }}">Edit</a></td>
+            <td>{{ team[0] }}</td>
+            <td>{{ team[1] }}</td>
+            <td>{{ team[2] }}</td>
+            <td>{{ team[3] }}</td>
+            <td>{{ team[4] }}</td>
+            <td>{{ team[5] }}</td>
+            <td>{{ team[6] }}</td>
+            <td>{{ team[7] }}</td>
+          </tr> 
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+
+    <nav>
+      <ul class="pagination justify-content-end">
+        <li class="page-item {% if current_page == 1 %}disabled{% endif %}">
+          <a 
+            class="page-link"
+            href="{{ url_for('core.teams_list') + '?year=' ~ filter_selected_year ~ '&page=1' }}"
+          >
+            First
+          </a>
+        </li>
+        <li class="page-item {% if current_page == 1 %}disabled{% endif %}">
+          <a 
+            class="page-link"
+            href="{{ url_for('core.teams_list') + '?year=' ~ filter_selected_year ~ '&page=' ~ (current_page - 1) }}"
+          >
+            &laquo;
+          </a>
+        </li>
+
+        {% for i in range(render_page_start, render_page_end + 1) %}
+          <li class="page-item {% if i == current_page %}active{% endif %}">
+            <a 
+              class="page-link" 
+              href="{{ url_for('core.teams_list') + '?year=' ~ filter_selected_year ~ '&page=' ~ i }}"
+            >
+              {{ i }}
+            </a>
+          </li>
+        {% endfor %}
+
+        <li class="page-item {% if current_page == total_pages %}disabled{% endif %}">
+          <a 
+            class="page-link"
+            href="{{ url_for('core.teams_list') + '?year=' ~ filter_selected_year ~ '&page=' ~ (current_page + 1) }}"
+          >
+            &raquo;
+          </a>
+        </li>
+        <li class="page-item {% if current_page == total_pages %}disabled{% endif %}">
+          <a 
+            class="page-link"
+            href="{{ url_for('core.teams_list') + '?year=' ~ filter_selected_year ~ '&page=' ~ total_pages }}"
+          >
+            Last
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+  </div>
+</div>
+{% endblock %}

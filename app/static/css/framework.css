@@ -1,0 +1,280 @@
+:root {
+    --app-header-height: 60px;
+    --sidebar-width: 270px;
+    --sidebar-tree-indent: 30px;
+}
+
+/* ======================================================= */
+/* ======================================================= */
+/* ==================== RootContainer ==================== */
+/* ======================================================= */
+/* ======================================================= */
+
+.app-container {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    margin: 0;
+
+    /* change */
+    background: #f1f4f6;
+}
+
+/* ======================================================== */
+/* ======================================================== */
+/* ==================== Top Header Bar ==================== */
+/* ======================================================== */
+/* ======================================================== */
+
+.app-header {
+    margin-left: 0 !important;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    align-content: center;
+    transition: all .2s;
+
+    height: var(--app-header-height);
+
+    box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03),0 0.9375rem 1.40625rem rgba(4,9,20,0.03),0 0.25rem 0.53125rem rgba(4,9,20,0.05),0 0.125rem 0.1875rem rgba(4,9,20,0.03);
+
+    background: #fafbfc;
+    background-color: #f7b924 !important;
+}
+
+/* ======================================================= */
+/* ======================================================= */
+/* ==================== MainContainer ==================== */
+/* ======================================================= */
+/* ======================================================= */
+
+
+.app-main {
+    padding-top: var(--app-header-height);
+    
+    flex: 1;
+    display: flex;
+    z-index: 8;
+    position: relative;
+}
+
+/* ===================================================== */
+/* ===================================================== */
+/* ====================== Sidebar ====================== */
+/* ===================================================== */
+/* ===================================================== */
+
+
+.app-sidebar {
+
+    width: var(--sidebar-width);
+    min-width: var(--sidebar-width);
+    flex: 0 0 var(--sidebar-width);
+
+    margin-top: calc(var(--app-header-height) * -1);
+    padding-top: var(--app-header-height);
+
+    background: #fff;
+    box-shadow: 7px 0 var(--app-header-height) rgba(0,0,0,0.05);
+
+    display: flex;
+    z-index: 11;
+    overflow: hidden;
+    position: relative;
+    transition: all .2s;
+    position: fixed;
+    height: 100vh;
+}
+
+.app-sidebar--inner {
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: auto;
+    /*padding: 2px 1.5rem 1.5rem;*/
+    padding: 2px 15px 1.5rem;
+}
+
+.app-sidebar ul.nav-menu {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    list-style: none;
+}
+
+.app-sidebar .nav-menu li.heading {
+    text-transform: uppercase;
+    font-size: .8rem;
+    margin: .75rem 0;
+    font-weight: bold;
+    color: #3f6ad8;
+    white-space: nowrap;
+    position: relative;
+}
+
+.app-sidebar .nav-menu li a {
+    height: 2rem;
+
+    color: #343a40;
+
+    line-height: 100%;
+    text-decoration: none;
+    background-color: transparent;
+    outline: none !important;
+
+    padding: 0 1.5rem 0 var(--sidebar-tree-indent);
+    position: relative;
+    border-radius: .25rem;
+    white-space: nowrap;
+    transition: all .2s;
+    margin: .1rem 0;
+
+    display: flex;
+    align-items: center;
+
+}
+
+.app-sidebar .nav-menu li a:hover {
+    background: #e0f3ff;
+    text-decoration: none;
+}
+
+.app-sidebar .nav-menu li a.active {
+    color: #3f6ad8;
+    background: #e0f3ff;
+    font-weight: bold;
+}
+
+/* ======================================================= */
+/* ======================================================= */
+/* ======================= Content ======================= */
+/* ======================================================= */
+/* ======================================================= */
+
+
+.app-content {
+    padding-left: var(--sidebar-width);
+
+    flex: 1;
+    flex-direction: column;
+    display: flex;
+    z-index: 9;
+
+    overflow: auto;
+}
+
+.app-content .app-content--inner {
+    padding: 30px 30px 50px;
+    flex: 1;
+}
+
+.app-page-title {
+    padding: 30px;
+    margin: -30px -30px 30px;
+    position: relative;
+
+    background: rgba(255,255,255,0.45);
+}
+
+.app-page-title .page-title-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.app-page-title .page-title-heading {
+
+    margin: 0;
+    padding: 0;
+
+    font-size: 1.25rem;
+    font-weight: 400;
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+.app-page-title .page-title-icon {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    padding: .83333rem;
+    margin: 0 30px 0 0;
+    background: #fff;
+    box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03),0 0.9375rem 1.40625rem rgba(4,9,20,0.03),0 0.25rem 0.53125rem rgba(4,9,20,0.05),0 0.125rem 0.1875rem rgba(4,9,20,0.03);
+    border-radius: .25rem;
+
+    min-width: 60px;
+    max-width: 60px;
+
+    min-height: 60px;
+    max-height: 60px;
+}
+
+.app-page-title .page-title-subheading {
+    margin: 0;
+    padding: 3px 0 0;
+    font-size: .88rem;
+    opacity: .6;
+}
+
+/* ================================================= */
+/* ================================================= */
+/* ==================== Buttons ==================== */
+/* ================================================= */
+/* ================================================= */
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #495057;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color 0.15s,background-color 0.15s,border-color 0.15s,box-shadow 0.15s;
+
+    font-size: 0.8rem;
+    font-weight: 500;
+
+    position: relative;
+}
+
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+
+.btn-primary { color: #fff; background-color: #3f6ad8; border-color: #3f6ad8; }
+.btn-primary:hover { color: #fff; background-color: #2955c8; border-color: #2651be; }
+.btn-primary.btn-shadow { box-shadow: 0 0.125rem 0.625rem rgba(63,106,216,0.4),0 0.0625rem 0.125rem rgba(63,106,216,0.5); }
+.btn-primary.btn-shadow:hover { box-shadow: 0 0.125rem 0.625rem rgba(63,106,216,0.5),0 0.0625rem 0.125rem rgba(63,106,216,0.6); }
+
+.btn-success { color: #fff; background-color: #3ac47d; border-color: #3ac47d; }
+.btn-success:hover { color: #fff; background-color: #31a66a; border-color: #2e9d64; }
+.btn-success.btn-shadow { box-shadow: 0 0.125rem 0.625rem rgba(58,196,125,0.4),0 0.0625rem 0.125rem rgba(58,196,125,0.5); }
+.btn-success.btn-shadow:hover { box-shadow: 0 0.125rem 0.625rem rgba(58,196,125,0.5),0 0.0625rem 0.125rem rgba(58,196,125,0.6); }
+
+.btn-danger { color: #fff; background-color: #d92550; border-color: #d92550; }
+.btn-danger:hover { color: #fff; background-color: #b81f44; border-color: #ad1e40; }
+.btn-danger.btn-shadow { box-shadow: 0 0.125rem 0.625rem rgba(217,37,80,0.4),0 0.0625rem 0.125rem rgba(217,37,80,0.5); }
+.btn-danger.btn-shadow:hover { box-shadow: 0 0.125rem 0.625rem rgba(217,37,80,0.5),0 0.0625rem 0.125rem rgba(217,37,80,0.6); }
+
+/* ================================================= */
+/* ================================================= */
+/* ==================== Forms ====================== */
+/* ================================================= */
+/* ================================================= */
+
+.form-group {
+    margin-bottom: 1rem;
+}

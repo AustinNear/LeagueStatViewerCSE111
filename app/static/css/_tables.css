@@ -1,0 +1,101 @@
+/* ======================= */
+.app-table-wrapper {
+    display: flex;
+    max-width: 100%;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.app-table-header {
+    margin: 0;
+    padding: 14px 20px;
+    border-color: #e9ecef;
+    border-style: solid;
+    border-width: 1px 1px 0px 1px;
+    background-color: #f8f9fa;
+    color: #495057;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.app-table-header > .title {
+    font-weight: 500;
+    font-size: 21px;
+}
+
+.app-table-responsive {
+    overflow-x: auto;
+}
+
+.app-table {
+    margin: 0 0 0px 0;
+    border-collapse: collapse;
+    border-color: #e9ecef;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.app-table:not(.no-expand)
+{
+    width: 100%;
+}
+
+.app-table tbody {
+    background-color: #ffffff;
+}
+.app-table th, .app-table td {
+    cursor: default;
+    border-style: solid;
+    text-align: center;
+    color: #495057;
+}
+.app-table th {
+    font-weight: 500;
+    padding: 14px 10px;
+    border-width: 2px 1px;
+    border-color: #d9dcde;
+    background-color: #f8f9fa;
+}
+.app-table th:hover {
+  background-color: #e9ecef;
+}
+.app-table tr.tbl-row-small th {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.app-table td {
+    padding: 5px 10px;
+    border-width: 2px 0 2px 0;
+    border-color: #e9ecef;
+}
+.app-table tbody tr td {
+    position: relative;
+    transition: 0.2s all ease;
+}
+.app-table tbody tr td:before, .app-table tbody tr td:after {
+    transition: 0.2s all ease;
+    content: "";
+    left: 0;
+    right: 0;
+    position: absolute;
+    height: 1px;
+    background: #e83e8c;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+}
+.app-table tbody tr td:before {
+    top: -1px;
+}
+.app-table tbody tr td:after {
+    bottom: -1px;
+}
+.app-table tbody tr:hover td, .app-table tbody tr.active td {
+    background: rgba(232, 62, 140, 0.03);
+}
+.app-table tbody tr:hover td:before, .app-table tbody tr:hover td:after, .app-table tbody tr.active td:before, .app-table tbody tr.active td:after {
+    opacity: 1;
+    visibility: visible;
+}

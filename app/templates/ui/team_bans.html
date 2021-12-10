@@ -1,0 +1,61 @@
+{% extends 'ui/base_layout.html' %}
+{% import 'partials/page-title.html' as pt %}
+{% set active_page = "team_bans" %}
+
+{% block content %}
+{{ pt.page_title("Team Bans", "Champion that a specific team banned first (or 2nd, 3rd, ...) the most times") }}
+{{ render_all_flashes() }}
+
+<div class="card">
+  <div class="card-body">
+    <form method="GET" action="">
+      <div class="row g-3 align-items-center mb-3">
+
+        <div class="col-auto">
+          <label class="col-form-label">Enter Team Tag</label>
+        </div>
+        <div class="col-auto">
+          <input name="teamtag" value="{{ filter_teamtag }}" class="form-control form-control-sm">
+        </div>
+
+        <div class="col-auto">
+          <label class="col-form-label">Select Ban Type (1st - 5th)</label>
+        </div>
+        <div class="col-auto">
+          <select name="ban_num" autocomplete="off" class="form-select form-select-sm app-form-ctrl">
+            <option value="1" {% if filter_ban_num == 1 %}selected{% endif %}>First Ban</option>
+            <option value="2" {% if filter_ban_num == 2 %}selected{% endif %}>Second Ban</option>
+            <option value="3" {% if filter_ban_num == 3 %}selected{% endif %}>Third Ban</option>
+            <option value="4" {% if filter_ban_num == 4 %}selected{% endif %}>Fourth Ban</option>
+            <option value="5" {% if filter_ban_num == 5 %}selected{% endif %}>Fifth Ban</option>
+          </select>
+        </div>
+
+        <div class="col-auto">
+          <button type="submit" class="btn btn-success btn-shadow">Go</button>
+        </div>
+      </div>
+    </form>
+
+    {% if show_results %}
+      <div class="app-table-responsive mb-3">
+        <table class="app-table no-expand">
+          <thead>
+            <tr>
+              <th>Champion Name</th>
+              <th>Number of bans</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ row[0] }}</td>
+              <td>{{ row[1] }}</td>
+            </tr> 
+          </tbody>
+        </table>
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+{% endblock %}

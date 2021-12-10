@@ -1,0 +1,60 @@
+{% extends 'ui/base_layout.html' %}
+{% import 'partials/page-title.html' as pt %}
+{% set active_page = "match_nlongest" %}
+
+{% block content %}
+{{ pt.page_title("Longest Matches", "Top 'N' longest matches") }}
+{{ render_all_flashes() }}
+
+<div class="card">
+  <div class="card-body">
+
+    <form method="GET" action="">
+      <div class="row g-3 align-items-center mb-3">
+        <div class="col-auto">
+          <label class="col-form-label">Enter Number of Top Matches</label>
+        </div>
+        <div class="col-auto">
+          <input 
+            type="number"
+            class="form-control form-control-sm app-form-ctrl"
+            placeholder="Default: 5"
+            value="{{ matches_num }}"
+            name="n"
+          >
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-success btn-shadow">Go</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="app-table-responsive mb-3">
+      <table class="app-table">
+        <thead>
+          <tr>
+            <th>No</td>
+            <th>Year</td>
+            <th>League</td>
+            <th>Type</td>
+            <th>Season</td>
+            <th>Game Length</td>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in rows %}
+            <tr>
+              <td>{{ loop.index }}</td>
+              <td>{{ r[0] }}</td>
+              <td>{{ r[1] }}</td>
+              <td>{{ r[2] }}</td>
+              <td>{{ r[3] }}</td>
+              <td>{{ r[4] }}</td>
+            </tr> 
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

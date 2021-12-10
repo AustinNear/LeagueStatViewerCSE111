@@ -1,0 +1,78 @@
+{% extends 'ui/base_layout.html' %}
+{% import 'partials/page-title.html' as pt %}
+{% set active_page = "mn_kills" %}
+
+{% block content %}
+{{ pt.page_title("Monster Kills", "Count every instance Blue side kills a specific monster vs Red side") }}
+{{ render_all_flashes() }}
+
+<div class="card">
+  <div class="card-body">
+    <form method="GET" action="">
+        <div class="row g-3 align-items-center mb-3">
+
+          <div class="col-auto">
+            <label class="col-form-label">Blue Side Type</label>
+          </div>
+          <div class="col-auto">
+            <select name="bside_type" autocomplete="off" class="form-select form-select-sm app-form-ctrl">
+              {% for side_t in side_types %}
+                <option value="{{ side_t }}" {% if filter_selected_bside == side_t %}selected{% endif %}>
+                  {{ side_t }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="col-auto">
+            <label class="col-form-label">Red Side Type</label>
+          </div>
+          <div class="col-auto">
+            <select name="rside_type" autocomplete="off" class="form-select form-select-sm app-form-ctrl">
+              {% for side_t in side_types %}
+                <option value="{{ side_t }}" {% if filter_selected_rside == side_t %}selected{% endif %}>
+                  {{ side_t }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="col-auto">
+            <label class="col-form-label">Monster Type</label>
+          </div>
+          <div class="col-auto">
+            <select name="monster_type" autocomplete="off" class="form-select form-select-sm app-form-ctrl">
+              {% for mn_t in mn_types %}
+                <option value="{{ mn_t }}" {% if filter_selected_type == mn_t %}selected{% endif %}>
+                  {{ mn_t }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="col-auto">
+            <button type="submit" class="btn btn-success btn-shadow">Go</button>
+          </div>
+        </div>
+      </form>
+
+      <div class="app-table-responsive">
+        <table class="app-table">
+          <thead>
+            <tr class="tbl-row-small">
+              <th>Blue Side Kills</th>
+              <th>Red Side Kills</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ blue_kills }}</td>
+              <td>{{ red_kills }}</td>
+            </tr> 
+          </tbody>
+        </table>
+      </div>
+
+  </div>
+</div>
+{% endblock %}

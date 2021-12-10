@@ -1,0 +1,66 @@
+{% extends 'ui/base_layout.html' %}
+{% import 'partials/page-title.html' as pt %}
+{% set active_page = "misc_most_kd" %}
+
+{% block content %}
+{{ pt.page_title("Most Kills/Deaths", "Most Kills/Deaths from all the data in the system") }}
+{{ render_all_flashes() }}
+
+<div class="card">
+  <div class="card-body">
+
+    <div class="row align-items-center">
+
+      <div class="col-md-6">
+        <div class="app-table-wrapper mb-3">
+          <div class="app-table-header" style="display: flex; align-items: center; justify-content: center;">
+            <h4>Most Kills</h4>
+          </div>
+          <div class="app-table-responsive">
+            <table class="app-table">
+              <thead>
+                <tr class="tbl-row-small">
+                  <th>Killer</th>
+                  <th>Number of kills</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ kill_stats[0] }}</td>
+                  <td>{{ kill_stats[1] }}</td>
+                </tr> 
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="app-table-wrapper mb-3">
+          <div class="app-table-header" style="display: flex; align-items: center; justify-content: center;">
+            <h4>Most Deaths</h4>
+          </div>
+          <div class="app-table-responsive">
+            <table class="app-table">
+              <thead>
+                <tr class="tbl-row-small">
+                  <th>Victim</th>
+                  <th>Number of deaths</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ death_stats[0] }}</td>
+                  <td>{{ death_stats[1] }}</td>
+                </tr> 
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'ui/base_layout.html' %}
+{% import 'partials/page-title.html' as pt %}
+{% set active_page = "misc_side_wins" %}
+
+{% block content %}
+{{ pt.page_title("Each Side's Wins", "Total wins, broken up for each team side") }}
+{{ render_all_flashes() }}
+
+<div class="card">
+  <div class="card-body">
+
+      <div class="app-table-wrapper mb-3">
+        <div class="app-table-header" style="display: flex; align-items: center; justify-content: center;">
+          <h4>Total Wins</h4>
+        </div>
+        <div class="app-table-responsive">
+          <table class="app-table">
+            <thead>
+              <tr class="tbl-row-small">
+                <th>Total wins for Blue side</th>
+                <th>Total wins for Red side</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ blue_wins }}</td>
+                <td>{{ red_wins }}</td>
+              </tr> 
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+  </div>
+</div>
+{% endblock %}

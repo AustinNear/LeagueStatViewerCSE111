@@ -1,0 +1,59 @@
+{% extends 'ui/base_layout.html' %}
+{% import 'partials/page-title.html' as pt %}
+{% set active_page = "champ_wls" %}
+
+{% block content %}
+{{ pt.page_title("Champion's Wins vs Losses", "A specific Champion's Wins vs Losses for a given Role") }}
+{{ render_all_flashes() }}
+
+<div class="card">
+  <div class="card-body">
+    <form method="GET" action="">
+      <div class="row g-3 align-items-center mb-3">
+
+        <div class="col-auto">
+          <label class="col-form-label">Select Champion Type</label>
+        </div>
+        <div class="col-auto">
+          <select name="ctype" autocomplete="off" class="form-select form-select-sm app-form-ctrl">
+            {% for type in champ_types %}
+              <option value="{{ type }}" {% if filter_ctype == type %}selected{% endif %} >{{ type }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="col-auto">
+          <label class="col-form-label">Enter Champion Name</label>
+        </div>
+        <div class="col-auto">
+          <input name="champ_name" value="{{ filter_champ_name }}" class="form-control form-control-sm">
+        </div>
+
+        <div class="col-auto">
+          <button type="submit" class="btn btn-success btn-shadow">Go</button>
+        </div>
+      </div>
+    </form>
+
+    {% if show_results %}
+      <div class="app-table-responsive">
+        <table class="app-table">
+          <thead>
+            <tr class="tbl-row-small">
+              <th>Wins</th>
+              <th>Losses</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ stats[0] }}</td>
+              <td>{{ stats[1] }}</td>
+            </tr> 
+          </tbody>
+        </table>
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+{% endblock %}

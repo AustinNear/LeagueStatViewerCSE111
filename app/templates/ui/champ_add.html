@@ -1,0 +1,97 @@
+{% extends 'ui/base_layout.html' %}
+{% import 'partials/page-title.html' as pt %}
+{% set active_page = "champ_add" %}
+
+{% block content %}
+{{ pt.page_title("Add Champion", "Add a new champion") }}
+{{ render_all_flashes() }}
+
+<div class="card">
+  <div class="card-body">
+    <form method="POST" autocomplete="off" action="">
+      {{ form.csrf_token }}
+
+      <div class="row form-group">
+        <label class="col-md-2 col-form-label">ID</label>
+        <div class="col-md-10">
+          {{ form.champ_id(placeholder="Enter ID", class="form-control form-control-sm") }}
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <label class="col-md-2 col-form-label">Name</label>
+        <div class="col-md-10">
+          {{ form.name(placeholder="Enter Name", class="form-control form-control-sm") }}
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <label class="col-md-2 col-form-label">Class</label>
+        <div class="col-md-10">
+          {{ form.cclass(placeholder="Enter Class", class="form-control form-control-sm") }}
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <label class="col-md-2 col-form-label">Style</label>
+        <div class="col-md-10">
+          {{ form.style(placeholder="Enter Style", class="form-control form-control-sm") }}
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <label class="col-md-2 col-form-label">Difficulty</label>
+        <div class="col-md-10">
+          {{ form.difficulty(placeholder="Enter Difficulty", class="form-control form-control-sm") }}
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <label class="col-md-2 col-form-label">Damage Type</label>
+        <div class="col-md-10">
+          {{ form.dtype(placeholder="Enter Damage Type", class="form-control form-control-sm") }}
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <label class="col-md-2 col-form-label">Damage</label>
+        <div class="col-md-10">
+          {{ form.damage(placeholder="Enter Damage", class="form-control form-control-sm") }}
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <label class="col-md-2 col-form-label">Sturdiness</label>
+        <div class="col-md-10">
+          {{ form.stdr(placeholder="Enter Sturdiness", class="form-control form-control-sm") }}
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <label class="col-md-2 col-form-label">Crowd Control</label>
+        <div class="col-md-10">
+          {{ form.cctrl(placeholder="Enter Crowd", class="form-control form-control-sm") }}
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <label class="col-md-2 col-form-label">Mobility</label>
+        <div class="col-md-10">
+          {{ form.mobl(placeholder="Enter Mobility", class="form-control form-control-sm") }}
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <label class="col-md-2 col-form-label">Functionality</label>
+        <div class="col-md-10">
+          {{ form.func(placeholder="Enter Functionality", class="form-control form-control-sm") }}
+        </div>
+      </div>
+
+
+      <button type="submit" class="btn btn-danger">Submit</button>
+
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'ui/base_layout.html' %}
+{% import 'partials/page-title.html' as pt %}
+{% set active_page = "team_selections" %}
+
+{% block content %}
+{{ pt.page_title("Team Selections", "Champions chosen by a specific role for a team during a given year") }}
+{{ render_all_flashes() }}
+
+<div class="card">
+  <div class="card-body">
+    <form method="GET" action="">
+      <div class="row g-3 align-items-center mb-3">
+
+        <div class="col-auto">
+          <label class="col-form-label">Select Champion Role</label>
+        </div>
+        <div class="col-auto">
+          <select name="ctype" autocomplete="off" class="form-select form-select-sm app-form-ctrl">
+            {% for type in champ_types %}
+              <option value="{{ type }}" {% if filter_ctype == type %}selected{% endif %} >{{ type }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="col-auto">
+          <label class="col-form-label">Enter Year</label>
+        </div>
+        <div class="col-auto">
+          <input name="year" value="{{ filter_year }}" type="number" class="form-control form-control-sm">
+        </div>
+
+        <div class="col-auto">
+          <label class="col-form-label">Enter Team Tag</label>
+        </div>
+        <div class="col-auto">
+          <input name="teamtag" value="{{ filter_teamtag }}" class="form-control form-control-sm">
+        </div>
+
+        <div class="col-auto">
+          <button type="submit" class="btn btn-success btn-shadow">Go</button>
+        </div>
+      </div>
+    </form>
+
+    {% if show_results %}
+      <div class="app-table-responsive mb-3">
+        <table class="app-table no-expand">
+          <thead>
+            <tr>
+              <th>Champion's Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for c in rows %}
+            <tr>
+              <td>{{ c[0] }}</td>
+            </tr> 
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+{% endblock %}

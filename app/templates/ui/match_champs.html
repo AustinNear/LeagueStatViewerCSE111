@@ -1,0 +1,91 @@
+{% extends 'ui/base_layout.html' %}
+{% import 'partials/page-title.html' as pt %}
+{% set active_page = "misc_match_champs" %}
+
+{% block content %}
+{{ pt.page_title("Match Champions", "List of Blue/Red team champions for a specific Role in a specific Match") }}
+{{ render_all_flashes() }}
+
+<div class="card">
+  <div class="card-body">
+    <form method="GET" action="">
+      <div class="row g-3 align-items-center mb-3">
+
+        <div class="col-auto">
+          <label class="col-form-label">Select Champion Type</label>
+        </div>
+        <div class="col-auto">
+          <select name="ctype" autocomplete="off" class="form-select form-select-sm app-form-ctrl">
+            {% for type in champ_types %}
+              <option value="{{ type }}" {% if filter_ctype == type %}selected{% endif %} >{{ type }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="col-auto">
+          <label class="col-form-label">Select Side</label>
+        </div>
+        <div class="col-auto">
+          <select name="side" autocomplete="off" class="form-select form-select-sm app-form-ctrl">
+            {% for s in all_sides %}
+              <option value="{{ s }}" {% if filter_side == s %}selected{% endif %} >{{ s }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <div class="row g-3 align-items-center mb-3">
+
+        <div class="col-md-2">
+          <label class="col-form-label">Enter Match Address</label>
+        </div>
+        <div class="col-md-10">
+          <input name="match_addr" value="{{ filter_m_addr }}" class="form-control form-control-sm">
+        </div>
+
+        <div class="col-auto">
+          <button type="submit" class="btn btn-success btn-shadow">Go</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="app-table-responsive mb-3">
+      <table class="app-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Class</th>
+            <th>Style</th>
+            <th>Difficulty</th>
+            <th>Damage Type</th>
+            <th>Damage</th>
+            <th>Sturdiness</th>
+            <th>Crowd Control</th>
+            <th>Mobility</th>
+            <th>Functionality</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in rows %}
+          <tr>
+            <td>{{ r[0] }}</td>
+            <td>{{ r[1] }}</td>
+            <td>{{ r[2] }}</td>
+            <td>{{ r[3] }}</td>
+            <td>{{ r[4] }}</td>
+            <td>{{ r[5] }}</td>
+            <td>{{ r[6] }}</td>
+            <td>{{ r[7] }}</td>
+            <td>{{ r[8] }}</td>
+            <td>{{ r[9] }}</td>
+            <td>{{ r[10] }}</td>
+          </tr> 
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
